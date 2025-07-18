@@ -5,7 +5,6 @@ class CountryCardList extends StatelessWidget {
   final String continent;
   final List<Map<String, String>> countries;
   final void Function(String) onTap;
-  // static final List<String> _selectedCountries = [];
 
   const CountryCardList({
     super.key,
@@ -13,10 +12,6 @@ class CountryCardList extends StatelessWidget {
     required this.countries,
     required this.onTap,
   });
-
-  //   static List<String> get getSelectedCountries {
-  //   return _selectedCountries;
-  // }
 
   @override
   Widget build(BuildContext context) {

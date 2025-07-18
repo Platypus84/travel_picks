@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:travel_picks/country_card.dart';
 import 'package:travel_picks/country_card_list.dart';
 
 class TravelHomePage extends StatefulWidget {
