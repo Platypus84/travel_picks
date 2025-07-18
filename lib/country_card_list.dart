@@ -4,6 +4,7 @@ import 'package:travel_picks/country_card.dart';
 class CountryCardList extends StatefulWidget {
   final String continent;
   final List<Map<String, String>> countries;
+  // static final List<String> _selectedCountries = [];
   final List<String> _selectedCountries = [];
 
   CountryCardList({
@@ -12,9 +13,13 @@ class CountryCardList extends StatefulWidget {
     required this.countries,
   });
 
-  get getSelectedCountries {
+  List<String> get getSelectedCountries {
     return _selectedCountries;
   }
+
+  //   static List<String> get getSelectedCountries {
+  //   return _selectedCountries;
+  // }
 
   @override
   State<CountryCardList> createState() => _CountryCardListState();
