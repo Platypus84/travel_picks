@@ -1,56 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:travel_picks/country_card.dart';
 
-class CountryCardList extends StatefulWidget {
+class CountryCardList extends StatelessWidget {
   final String continent;
   final List<Map<String, String>> countries;
+  final void Function(String) onTap;
   // static final List<String> _selectedCountries = [];
-  final List<String> _selectedCountries = [];
 
-  CountryCardList({
+  const CountryCardList({
     super.key,
     required this.continent,
     required this.countries,
+    required this.onTap,
   });
-
-  List<String> get getSelectedCountries {
-    return _selectedCountries;
-  }
 
   //   static List<String> get getSelectedCountries {
   //   return _selectedCountries;
   // }
 
   @override
-  State<CountryCardList> createState() => _CountryCardListState();
-}
-
-class _CountryCardListState extends State<CountryCardList> {
-  void _addCountry(String countryName) {
-    if (!widget._selectedCountries.contains(countryName)) {
-      setState(() {
-        widget._selectedCountries.add(countryName);
-      });
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
         SizedBox(height: 24),
-        Text(widget.continent, style: TextStyle(fontSize: 18)),
+        Text(continent, style: TextStyle(fontSize: 18)),
         const SizedBox(height: 8),
         SizedBox(
           height: 140,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: widget.countries
+            shrinkWrap: true,
+            children: countries
                 .map(
                   (country) => CountryCard(
                     emoji: country["emoji"]!,
                     name: country["name"]!,
-                    onTap: () => _addCountry(country["name"]!),
+                    onTap: () => onTap(country["name"]!),
                   ),
                 )
                 .toList(),

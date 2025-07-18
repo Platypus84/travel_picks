@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_picks/country_card.dart';
 import 'package:travel_picks/country_card_list.dart';
 
 class TravelHomePage extends StatefulWidget {
@@ -9,6 +10,16 @@ class TravelHomePage extends StatefulWidget {
 }
 
 class _TravelHomePageState extends State<TravelHomePage> {
+  final List<String> _selectedCountries = [];
+
+  void _addCountry(String countryName) {
+    if (!_selectedCountries.contains(countryName)) {
+      setState(() {
+        _selectedCountries.add(countryName);
+      });
+    }
+  }
+
   static final List<Map<String, String>> europeCountries = [
     {"emoji": "🇮🇹", "name": "Italien"},
     {"emoji": "🇪🇸", "name": "Spanien"},
@@ -43,14 +54,19 @@ class _TravelHomePageState extends State<TravelHomePage> {
               ),
             ),
           ),
-          CountryCardList(countries: europeCountries, continent: 'Europa'),
+          CountryCardList(
+            countries: europeCountries,
+            continent: 'Europa',
+            onTap: _addCountry,
+          ),
           CountryCardList(
             countries: southAmericaCountries,
             continent: 'Südamerika',
+            onTap: _addCountry,
           ),
           Wrap(
             spacing: 8,
-            children: CountryCardList().getSelectedCountries
+            children: _selectedCountries
                 .map((name) => Chip(label: Text(name)))
                 .toList(),
           ),
